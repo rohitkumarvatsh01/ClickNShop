@@ -10,4 +10,3 @@ public class ClickNShopApplication {
 		SpringApplication.run(ClickNShopApplication.class, args);
 	}
 }
-// this is for test
