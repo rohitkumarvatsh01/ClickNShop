@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClickNShop Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .header{
+			font-family: 'Roboto', sans-serif;
+        	background-color: #fafafa;
+        	text-align: center; 
+		}
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fafafa;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow-y: auto;
+        }
+        h1, h2 {
+            color: #007bff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        p {
+            color: #666;
+            font-size: 18px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        td {
+            background-color: #fff;
+            color: #666;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #007bff;
+            padding: 5px 10px; /* Reduced padding */
+            color: white;
+            line-height: 1.5; /* Adjust line height for better spacing */
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        .navbar a:hover {
+            color: #ddd;
+        }
+        .product-image {
+            width: 50%;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+        .product-image:hover {
+            transform: scale(1.1);
+        }
+        .button, .paymentButton {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover, .paymentButton:hover {
+            background-color: #0056b3;
+        }
+        input.quantity {
+            width: 40px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .quantity-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .quantity-btn:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            background-color: rgb(255, 255, 255);
+            color:  rgb(0, 128, 255);
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: rgb(0, 128, 255);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color:  rgb(0, 64, 128);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Bar -->
+    <header>
+        <div class="header">
+            <h1>Welcome to ClickNShop</h1>
+            <p>Revolutionizing your shopping experience!</p>
+        </div>
+    </header>
+    
+    <!-- Nav Bar -->
+    <div class="navbar">
+        <div>
+            <a href="/product/user-login">Home</a>
+            <a href="/product/user-login">Products</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div>
+            <a href="#"><i class="fas fa-user"></i> Account</a>
+            <a href="/product/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+    
+    <!-- Body Bar -->
+    <div class="container">
+        <h1>Shopping Cart</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${cartItems}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td><img th:src="${item.imageUrl}" th:alt="${item.name}" class="product-image"></td>
+                    <td class="price">₹<span th:text="${item.price}"></span></td>
+                    <td>
+                        <button class="quantity-btn minus-btn">-</button>
+                        <input type="number" name="quantity" value="1" min="0" class="quantity">
+                        <button class="quantity-btn plus-btn">+</button>
+                    </td>
+                    <td class="total">₹<span th:text="${item.price}"></span></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" style="text-align: right;">Total Price:</td>
+                    <td id="total-price">₹0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+        <a class="paymentButton" href="https://rzp.io/l/VP9z3by">Payment</a>
+        <hr>
+        <a href="/product/user-login">Continue Shopping</a>
+    </div>
+    
+    <!-- Footer Bar -->
+    <footer class="footer">
+        <p>&copy; 2024 ClickNShop. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+    
+    <script>
+        var quantityInputs = document.querySelectorAll('input[name="quantity"]');
+        
+        quantityInputs.forEach(function(input) {
+            input.addEventListener('change', calculateTotal);
+            input.addEventListener('keyup', calculateTotal);
+        });
+
+        var minusButtons = document.querySelectorAll('.minus-btn');
+        var plusButtons = document.querySelectorAll('.plus-btn');
+
+        minusButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var input = this.parentElement.querySelector('input[name="quantity"]');
+                var currentValue = parseInt(input.value);
+                if (currentValue > 0) {
+                    input.value = currentValue - 1;
+                    calculateTotal.call(input);
+                }
+            });
+        });
+
+        plusButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var input = this.parentElement.querySelector('input[name="quantity"]');
+                var currentValue = parseInt(input.value);
+                input.value = currentValue + 1;
+                calculateTotal.call(input);
+            });
+        });
+
+        function calculateTotal() {
+            var totalPrice = 0;
+
+            document.querySelectorAll('tbody tr').forEach(function(row) {
+                var priceElement = row.querySelector('.price');
+                var quantityInput = row.querySelector('input[name="quantity"]');
+                var price = parseFloat(priceElement.textContent.replace('₹', ''));
+                var quantity = parseInt(quantityInput.value);
+                var total = price * quantity;
+                row.querySelector('.total').textContent = '₹' + total.toFixed(2);
+                totalPrice += total;
+                
+                if (quantity === 0) {
+                    row.remove();
+                }
+            });
+
+            var totalElement = document.getElementById('total-price');
+            totalElement.textContent = '₹' + totalPrice.toFixed(2);
+        }
+
+        window.addEventListener('load', calculateTotal);
+    </script>
+</body>
+</html>

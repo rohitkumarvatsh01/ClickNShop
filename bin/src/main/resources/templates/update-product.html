@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClickNShop Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1,h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        form {
+            text-align: left;
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to ClickNShop</h1>
+        <p>Revolutionizing your shopping experience!</p>
+        <h2>Admin Page</h2>
+        
+        <div>
+            <a href="/product/create" class="button">Add Product</a>
+            <a href="/product/viewAll" class="button">View All Products</a>
+        	<a href="/product/user-login" class="button">Change to User Dashboard</a>
+        </div>
+    
+        <h2>Update Product</h2>
+		<form action="/product/update/${product.id}" method="post" th:action="@{'/product/update/' + ${product.id}}">
+
+            <input type="hidden" name="id" th:value="${product.id}" />
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" th:value="${product.name}">
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" th:value="${product.price}">
+
+            <label for="imageUrl">Image URL:</label>
+            <input type="text" id="imageUrl" name="imageUrl" th:value="${product.imageUrl}">
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+    <footer>
+        &copy; 2024 ClickNShop. All rights reserved.
+    </footer>
+</body>
+</html>

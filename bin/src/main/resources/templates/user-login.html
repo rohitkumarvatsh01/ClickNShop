@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>ClickNShop User Page</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+      <style>
+         body {
+         font-family: 'Roboto', sans-serif;
+         background-color: #fafafa;
+         }
+         .company-icon {
+         width: 40px; /* Adjust the width as needed */
+         height: auto; /* Maintain aspect ratio */
+         margin-right: 10px; /* Add spacing between the icon and other links */
+         }
+         .container {
+         width: 100%;
+         padding: 20px;
+         background-color: #fff;
+         border-radius: 8px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         text-align: center;
+         overflow-y: auto;
+         }
+         h1,h2 {
+         color:  #007bff;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         }
+         p {
+         color: #666;
+         font-size: 18px;
+         }
+         .product-grid {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: flex-start;
+         }
+         .navbar {
+         display: flex;
+         justify-content: space-between;
+         background-color: #007bff;
+         padding: 10px 20px;
+         color: white;
+         }
+         .navbar a {
+         color: white;
+         text-decoration: none;
+         margin-right: 15px;
+         }
+         .navbar a:hover {
+         color: #ddd;
+         }
+         .product-card {
+         width: calc(24% - 11px);
+         padding: 20px;
+         margin-bottom: 20px;
+         margin-right: 20px;
+         border-radius: 10px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         transition: all 0.3s ease-in-out;
+         box-sizing: border-box;
+         }
+         .product-card:hover {
+         transform: scale(1.05);
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+         }
+         .product-image {
+         width: 100%;
+         height: 200px;
+         border-radius: 10px;
+         object-fit: cover;
+         transition: transform 0.3s ease-in-out;
+         }
+         .product-image:hover {
+         transform: scale(1.1);
+         }
+         .add-to-cart {
+         display: inline-block;
+         padding: 10px 20px;
+         margin-top: 10px;
+         border-radius: 5px;
+         text-decoration: none;
+         color: #fff;
+         background-color: #007bff;
+         border: none;
+         cursor: pointer;
+         transition: background-color 0.3s;
+         }
+         .add-to-cart:hover {
+         background-color: #0056b3;
+         }
+         .new_footer_area {
+         background: black;
+         }
+         .new_footer_top {
+         padding: 120px 0px 270px;
+         position: relative;
+         overflow-x: hidden;
+         }
+         .new_footer_area .footer_bottom {
+         padding-top: 5px;
+         padding-bottom: 50px;
+         }
+         .new_footer_top .footer_bg {
+         position: absolute;
+         bottom: 0;
+         background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigB8iI5tb8WSVBuVUGc9UjjB8O0708X7Fdic_4O1LT4CmLHoiwhanLXiRhe82yw0R7LgACQ2IhZaTY0hhmGi0gYp_Ynb49CVzfmXtYHUVKgXXpWvJ_oYT8cB4vzsnJLe3iCwuzj-w6PeYq_JaHmy_CoGoa6nw0FBo-2xLdOPvsLTh_fmYH2xhkaZ-OGQ/s16000/footer_bg.png") no-repeat scroll center 0;
+         width: 100%;
+         height: 266px;
+         }
+         .new_footer_top .footer_bg .footer_bg_one {
+         background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEia0PYPxwT5ifToyP3SNZeQWfJEWrUENYA5IXM6sN5vLwAKvaJS1pQVu8mOFFUa_ET4JuHNTFAxKURFerJYHDUWXLXl1vDofYXuij45JZelYOjEFoCOn7E6Vxu0fwV7ACPzArcno1rYuVxGB7JY6G7__e4_KZW4lTYIaHSLVaVLzklZBLZnQw047oq5-Q/s16000/volks.gif") no-repeat center center;
+         width: 330px;
+         height: 105px;
+         background-size:100%;
+         position: absolute;
+         bottom: 0;
+         left: 30%;
+         -webkit-animation: myfirst 22s linear infinite;
+         animation: myfirst 22s linear infinite;
+         }
+         .new_footer_top .footer_bg .footer_bg_two {
+         background: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyLGwEUVwPK6Vi8xXMymsc-ZXVwLWyXhogZxbcXQYSY55REw_0D4VTQnsVzCrL7nsyjd0P7RVOI5NKJbQ75koZIalD8mqbMquP20fL3DxsWngKkOLOzoOf9sMuxlbyfkIBTsDw5WFUj-YJiI50yzgVjF8cZPHhEjkOP_PRTQXDHEq8AyWpBiJdN9SfQA/s16000/cyclist.gif") no-repeat center center;
+         width: 88px;
+         height: 100px;
+         background-size:100%;
+         bottom: 0;
+         left: 38%;
+         position: absolute;
+         -webkit-animation: myfirst 30s linear infinite;
+         animation: myfirst 30s linear infinite;
+         }
+         @-moz-keyframes myfirst {
+         0% {
+         left: -25%;
+         }
+         100% {
+         left: 100%;
+         }
+         }
+         @-webkit-keyframes myfirst {
+         0% {
+         left: -25%;
+         }
+         100% {
+         left: 100%;
+         }
+         }
+         @keyframes myfirst {
+         0% {
+         left: -25%;
+         }
+         100% {
+         left: 100%;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <h1>Welcome to ClickNShop</h1>
+         <p>Revolutionizing your shopping experience!</p>
+         <div class="navbar">
+            <div>
+               <a href="/product/user-login">Home</a>
+               <a href="/product/user-login">Products</a>
+               <a href="#">About Us</a>
+               <a href="#">Contact Us</a>
+            </div>
+            <div>
+               <a href="#"><i class="fas fa-user"></i> Account</a>
+               <a href="/product/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+               <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+         </div>
+         <br>
+         <br>
+         <div class="product-grid">
+            <!-- Thymeleaf loop to iterate over products -->
+            <div th:each="product, iterStat : ${products}" class="product-card">
+               <img th:src="${product.imageUrl}" class="product-image">
+               <h3 th:text="${product.name}"></h3>
+               <p>₹<span th:text="${product.price}"></span></p>
+               <button type="button" class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-image="${product.imageUrl}">Add to Cart</button>
+               <!-- Add a line break after every fourth product -->
+               <th:block th:if="${iterStat.count % 4 == 0}"><br /></th:block>
+            </div>
+         </div>
+      </div>
+      <footer class="new_footer_area bg_color">
+         <div class="new_footer_top">
+            <div class="footer_bg">
+               <div class="footer_bg_one"></div>
+               <div class="footer_bg_two"></div>
+            </div>
+         </div>
+         <div class="footer_bottom">
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-lg-6 col-sm-7">
+                     <p class="mb-0 f_400">© ClickNShop Inc.. 2024 All rights reserved.</p>
+                  </div>
+                  <div class="col-lg-6 col-sm-5 text-right">
+                     <p>Made by <a href="https://www.linkedin.com/in/rohitkumarvatsh01/" target="_blank">Rohit Kumar</a></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+   </body>
+</html>

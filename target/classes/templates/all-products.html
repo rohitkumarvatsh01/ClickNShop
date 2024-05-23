@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClickNShop Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1,h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .buttonUpdate {
+            background-color: #007bff;
+        }
+        .buttonDelete {
+            background-color: #e34444;
+        }
+        .buttonUpdate:hover, .buttonDelete:hover {
+            filter: brightness(1.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        td {
+            background-color: #fff;
+            color: #666;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to ClickNShop</h1>
+        <p>Revolutionizing your shopping experience!</p>
+        <h2>Admin Page</h2>
+        
+        <div>
+            <a href="/product/create" class="button">Add Product</a>
+            <a href="/product/viewAll" class="button">View All Products</a>
+        	<a href="/product/user-login" class="button">Change to User Dashboard</a>
+        </div>
+    
+        <h2>All Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Id</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td>₹<span th:text="${product.price}"></span></td>
+                    <td>
+                        <img th:src="${product.imageUrl}" style="max-width: 150px; max-height: 150px;">
+                    </td>
+                    <td>
+                        <!-- Update Button -->
+                        <form th:action="@{'/product/update/' + ${product.id}}" method="get">
+                            <button type="submit" class="button buttonUpdate">Update</button>
+                        </form>
+                        <!-- Delete Button -->
+                        <form th:action="@{'/product/delete/' + ${product.id}}" method="post">
+                            <button type="submit" class="button buttonDelete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        &copy; 2024 ClickNShop. All rights reserved.
+    </footer>
+</body>
+</html>
