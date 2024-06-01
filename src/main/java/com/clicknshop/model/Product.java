@@ -29,9 +29,10 @@ public class Product {
     @Column(name="price", nullable=false)
     private double price;
 
-	@Column(name="image_url")
-	private String imageUrl;
+    @Column(name="image_url")
+    private String imageUrl;
 
+	//Generate Gatter Setter
 	public Long getId() {
 		return id;
 	}
