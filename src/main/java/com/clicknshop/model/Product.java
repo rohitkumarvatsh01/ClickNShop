@@ -64,3 +64,5 @@ public class Product {
 		this.imageUrl = imageUrl;
 	}
 }
+
+//This is Model class 
