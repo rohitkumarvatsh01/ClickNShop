@@ -10,3 +10,5 @@ public class ClickNShopApplication {
 		SpringApplication.run(ClickNShopApplication.class, args);
 	}
 }
+
+//Now convert into Microservices
