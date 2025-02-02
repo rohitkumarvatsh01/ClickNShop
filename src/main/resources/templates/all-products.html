@@ -78,52 +78,52 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to ClickNShop</h1>
-        <p>Revolutionizing your shopping experience!</p>
-        <h2>Admin Page</h2>
-        
-        <div>
-            <a href="/product/create" class="button">Add Product</a>
-            <a href="/product/viewAll" class="button">View All Products</a>
-        	<a href="/product/user-login" class="button">Change to User Dashboard</a>
-        </div>
-    
-        <h2>All Products</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product Id</th>
-                    <th>Product Name</th>
-                    <th>Product Price</th>
-                    <th>Product Image</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="product : ${products}">
-                    <td th:text="${product.id}"></td>
-                    <td th:text="${product.name}"></td>
-                    <td>₹<span th:text="${product.price}"></span></td>
-                    <td>
-                        <img th:src="${product.imageUrl}" style="max-width: 150px; max-height: 150px;">
-                    </td>
-                    <td>
-                        <!-- Update Button -->
-                        <form th:action="@{'/product/update/' + ${product.id}}" method="get">
-                            <button type="submit" class="button buttonUpdate">Update</button>
-                        </form>
-                        <!-- Delete Button -->
-                        <form th:action="@{'/product/delete/' + ${product.id}}" method="post">
-                            <button type="submit" class="button buttonDelete">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <h1>Welcome to ClickNShop</h1>
+    <p>Revolutionizing your shopping experience!</p>
+    <h2>Admin Page</h2>
+
+    <div>
+        <a href="/product/create" class="button">Add Product</a>
+        <a href="/product/viewAll" class="button">View All Products</a>
+        <a href="/product/user-login" class="button">Change to User Dashboard</a>
     </div>
-    <footer>
-        &copy; 2024 ClickNShop. All rights reserved.
-    </footer>
+
+    <h2>All Products</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product Image</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td>₹<span th:text="${product.price}"></span></td>
+            <td>
+                <img th:src="${product.imageUrl}" style="max-width: 150px; max-height: 150px;">
+            </td>
+            <td>
+                <!-- Update Button -->
+                <form th:action="@{'/product/update/' + ${product.id}}" method="get">
+                    <button type="submit" class="button buttonUpdate">Update</button>
+                </form>
+                <!-- Delete Button -->
+                <form th:action="@{'/product/delete/' + ${product.id}}" method="post">
+                    <button type="submit" class="button buttonDelete">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer>
+    &copy; 2024 ClickNShop. All rights reserved.
+</footer>
 </body>
 </html>

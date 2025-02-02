@@ -22,14 +22,14 @@ public class ProductController {
     public String showUserLoginForm(Model model) {
         List<Product> products = productService.getAllProduct();
         model.addAttribute("products", products);
-        return "user-login"; 
+        return "user-login";
     }
 
     @PostMapping("/user-login")
     public String userLogin() {
-        return "redirect:/"; 
+        return "redirect:/";
     }
-    
+
     @GetMapping("/user-products")
     public String showAllProductsUser(Model model) {
         List<Product> products = productService.getAllProduct();
@@ -39,7 +39,7 @@ public class ProductController {
 
     @GetMapping("/admin-login")
     public String showAdminLoginForm() {
-        return "admin-login"; 
+        return "admin-login";
     }
 
     @PostMapping("/admin-login")
@@ -65,14 +65,14 @@ public class ProductController {
         model.addAttribute("products", products);
         return "all-products";
     }
-    
+
     @GetMapping("/update/{id}")
     public String showUpdateProductForm(@PathVariable("id") Long id, Model model) {
         Product product = productService.getProductById(id);
         model.addAttribute("product", product);
         return "update-product";
     }
-    
+
     @PostMapping("/update/{id}")
     public String updateProduct(@PathVariable("id") Long id, @ModelAttribute("product") Product product) {
         productService.updateProduct(id, product);
@@ -84,7 +84,7 @@ public class ProductController {
         productService.deleteProductById(id);
         return "redirect:/product/viewAll";
     }
-    
+
     @Autowired
     private CartService cartService;
 
@@ -109,5 +109,3 @@ public class ProductController {
         return "cart";
     }
 }
-
-//Now to Developer in Microservices

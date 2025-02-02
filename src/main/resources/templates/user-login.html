@@ -276,7 +276,6 @@
 
     </style>
 
-    
 
     <script>
 
@@ -316,85 +315,85 @@
 
 <body>
 
-    <!-- Header Bar -->
+<!-- Header Bar -->
 
-    <header class="header">
+<header class="header">
 
-        <h1>Welcome to ClickNShop</h1>
+    <h1>Welcome to ClickNShop</h1>
 
-        <p>Revolutionizing your shopping experience!</p>
+    <p>Revolutionizing your shopping experience!</p>
 
-    </header>
+</header>
 
-    <hr>
+<hr>
 
-    
 
-    <!-- Nav Bar -->
+<!-- Nav Bar -->
 
-    <div class="navbar">
+<div class="navbar">
 
-        <div>
+    <div>
 
-            <a href="/product/user-login">Home</a>
+        <a href="/product/user-login">Home</a>
 
-            <a href="/product/user-login">Products</a>
+        <a href="/product/user-login">Products</a>
 
-            <a href="#">About Us</a>
+        <a href="#">About Us</a>
 
-            <a href="#">Contact Us</a>
+        <a href="#">Contact Us</a>
 
-        </div>
+    </div>
 
-        <div>
+    <div>
 
-            <a href="#"><i class="fas fa-user"></i> Account</a>
+        <a href="#"><i class="fas fa-user"></i> Account</a>
 
-            <a href="/product/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+        <a href="/product/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
 
-            <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+    </div>
+
+</div>
+
+
+<!-- Body -->
+
+<div class="container">
+
+    <div class="product-grid">
+
+        <!-- Thymeleaf loop to iterate over products -->
+
+        <div th:each="product, iterStat : ${products}" class="product-card">
+
+            <img th:src="${product.imageUrl}" class="product-image">
+
+            <h3 th:text="${product.name}"></h3>
+
+            <p>₹<span th:text="${product.price}"></span></p>
+
+            <button type="button" class="toggle-cart" th:attr="data-id=${product.id}"
+                    onclick="toggleCartAction(this.getAttribute('data-id'), this)">Add to Cart
+            </button>
+
+            <th:block th:if="${iterStat.count % 4 == 0}"><br/></th:block>
 
         </div>
 
     </div>
 
-    
+</div>
 
-    <!-- Body -->
 
-    <div class="container">
+<!-- Footer Bar -->
 
-        <div class="product-grid">
+<footer class="footer">
 
-            <!-- Thymeleaf loop to iterate over products -->
+    <p>&copy; 2024 ClickNShop. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </p>
 
-            <div th:each="product, iterStat : ${products}" class="product-card">
-
-                <img th:src="${product.imageUrl}" class="product-image">
-
-                <h3 th:text="${product.name}"></h3>
-
-                <p>₹<span th:text="${product.price}"></span></p>
-
-                <button type="button" class="toggle-cart" th:attr="data-id=${product.id}" onclick="toggleCartAction(this.getAttribute('data-id'), this)">Add to Cart</button>
-
-                <th:block th:if="${iterStat.count % 4 == 0}"><br /></th:block>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    
-
-    <!-- Footer Bar -->
-
-    <footer class="footer">
-
-        <p>&copy; 2024 ClickNShop. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-
-    </footer>
+</footer>
 
 </body>
 

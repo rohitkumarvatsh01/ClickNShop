@@ -84,31 +84,31 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to ClickNShop</h1>
-        <p>Revolutionizing your shopping experience!</p>
-        <h2>Admin Page</h2>
-        <div>
-            <a href="/product/create" class="button">Add Product</a>
-            <a href="/product/viewAll" class="button">View All Products</a>
-        	<a href="/product/user-login" class="button">Change to User Dashboard</a>
-        </div>
-        <h2>Add Product</h2>
-        <form action="/product/create" method="post" enctype="multipart/form-data">
-            <label for="name">Product Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" step="0.01" required>
-            
-            <label for="image">Product Image:</label>
-            <input type="text" id="image" name="image" required> <!-- Input field for Image file -->
-            
-            <button type="submit">Submit</button>
-        </form>
+<div class="container">
+    <h1>Welcome to ClickNShop</h1>
+    <p>Revolutionizing your shopping experience!</p>
+    <h2>Admin Page</h2>
+    <div>
+        <a href="/product/create" class="button">Add Product</a>
+        <a href="/product/viewAll" class="button">View All Products</a>
+        <a href="/product/user-login" class="button">Change to User Dashboard</a>
     </div>
-    <footer>
-        &copy; 2024 ClickNShop. All rights reserved.
-    </footer>
+    <h2>Add Product</h2>
+    <form action="/product/create" method="post" enctype="multipart/form-data">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+
+        <label for="image">Product Image:</label>
+        <input type="text" id="image" name="image" required> <!-- Input field for Image file -->
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<footer>
+    &copy; 2024 ClickNShop. All rights reserved.
+</footer>
 </body>
 </html>

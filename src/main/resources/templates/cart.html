@@ -322,249 +322,246 @@
 
 <body>
 
-    <!-- Header Bar -->
+<!-- Header Bar -->
 
-    <header>
+<header>
 
-        <div class="header">
+    <div class="header">
 
-            <h1>Welcome to ClickNShop</h1>
+        <h1>Welcome to ClickNShop</h1>
 
-            <p>Revolutionizing your shopping experience!</p>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- Nav Bar -->
-
-    <div class="navbar">
-
-        <div>
-
-            <a href="/product/user-login">Home</a>
-
-            <a href="/product/user-login">Products</a>
-
-            <a href="#">About Us</a>
-
-            <a href="#">Contact Us</a>
-
-        </div>
-
-        <div>
-
-            <a href="#"><i class="fas fa-user"></i> Account</a>
-
-            <a href="/product/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
-
-            <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-
-        </div>
+        <p>Revolutionizing your shopping experience!</p>
 
     </div>
 
+</header>
 
 
-    <!-- Body Bar -->
+<!-- Nav Bar -->
 
-    <div class="container">
+<div class="navbar">
 
-        <h1>Shopping Cart</h1>
+    <div>
 
-        <table>
+        <a href="/product/user-login">Home</a>
 
-            <thead>
+        <a href="/product/user-login">Products</a>
 
-                <tr>
+        <a href="#">About Us</a>
 
-                    <th>Product ID</th>
-
-                    <th>Name</th>
-
-                    <th>Image</th>
-
-                    <th>Price</th>
-
-                    <th>Quantity</th>
-
-                    <th>Total</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr th:each="item : ${cartItems}">
-
-                    <td th:text="${item.id}"></td>
-
-                    <td th:text="${item.name}"></td>
-
-                    <td><img th:src="${item.imageUrl}" th:alt="${item.name}" class="product-image"></td>
-
-                    <td class="price">₹<span th:text="${item.price}"></span></td>
-
-                    <td>
-
-                        <button class="quantity-btn minus-btn">-</button>
-
-                        <input type="number" name="quantity" value="1" min="0" class="quantity">
-
-                        <button class="quantity-btn plus-btn">+</button>
-
-                    </td>
-
-                    <td class="total">₹<span th:text="${item.price}"></span></td>
-
-                </tr>
-
-            </tbody>
-
-            <tfoot>
-
-                <tr>
-
-                    <td colspan="5" style="text-align: right;">Total Price:</td>
-
-                    <td id="total-price">₹0.00</td>
-
-                </tr>
-
-            </tfoot>
-
-        </table>
-
-        <a class="paymentButton" href="https://rzp.io/l/VP9z3by">Payment</a>
-
-        <hr>
-
-        <a href="/product/user-login">Continue Shopping</a>
+        <a href="#">Contact Us</a>
 
     </div>
 
+    <div>
+
+        <a href="#"><i class="fas fa-user"></i> Account</a>
+
+        <a href="/product/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+
+        <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+    </div>
+
+</div>
 
 
-    <!-- Footer Bar -->
+<!-- Body Bar -->
 
-    <footer class="footer">
+<div class="container">
 
-        <p>&copy; 2024 ClickNShop. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    <h1>Shopping Cart</h1>
 
-    </footer>
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>Product ID</th>
+
+            <th>Name</th>
+
+            <th>Image</th>
+
+            <th>Price</th>
+
+            <th>Quantity</th>
+
+            <th>Total</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="item : ${cartItems}">
+
+            <td th:text="${item.id}"></td>
+
+            <td th:text="${item.name}"></td>
+
+            <td><img th:src="${item.imageUrl}" th:alt="${item.name}" class="product-image"></td>
+
+            <td class="price">₹<span th:text="${item.price}"></span></td>
+
+            <td>
+
+                <button class="quantity-btn minus-btn">-</button>
+
+                <input type="number" name="quantity" value="1" min="0" class="quantity">
+
+                <button class="quantity-btn plus-btn">+</button>
+
+            </td>
+
+            <td class="total">₹<span th:text="${item.price}"></span></td>
+
+        </tr>
+
+        </tbody>
+
+        <tfoot>
+
+        <tr>
+
+            <td colspan="5" style="text-align: right;">Total Price:</td>
+
+            <td id="total-price">₹0.00</td>
+
+        </tr>
+
+        </tfoot>
+
+    </table>
+
+    <a class="paymentButton" href="https://rzp.io/l/VP9z3by">Payment</a>
+
+    <hr>
+
+    <a href="/product/user-login">Continue Shopping</a>
+
+</div>
+
+
+<!-- Footer Bar -->
+
+<footer class="footer">
+
+    <p>&copy; 2024 ClickNShop. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </p>
+
+</footer>
+
+
+<script>
+
+    var quantityInputs = document.querySelectorAll('input[name="quantity"]');
 
 
 
-    <script>
+    quantityInputs.forEach(function(input) {
 
-        var quantityInputs = document.querySelectorAll('input[name="quantity"]');
+        input.addEventListener('change', calculateTotal);
 
+        input.addEventListener('keyup', calculateTotal);
 
-
-        quantityInputs.forEach(function(input) {
-
-            input.addEventListener('change', calculateTotal);
-
-            input.addEventListener('keyup', calculateTotal);
-
-        });
+    });
 
 
 
-        var minusButtons = document.querySelectorAll('.minus-btn');
+    var minusButtons = document.querySelectorAll('.minus-btn');
 
-        var plusButtons = document.querySelectorAll('.plus-btn');
-
-
-
-        minusButtons.forEach(function(button) {
-
-            button.addEventListener('click', function() {
-
-                var input = this.parentElement.querySelector('input[name="quantity"]');
-
-                var currentValue = parseInt(input.value);
-
-                if (currentValue > 0) {
-
-                    input.value = currentValue - 1;
-
-                    calculateTotal.call(input);
-
-                }
-
-            });
-
-        });
+    var plusButtons = document.querySelectorAll('.plus-btn');
 
 
 
-        plusButtons.forEach(function(button) {
+    minusButtons.forEach(function(button) {
 
-            button.addEventListener('click', function() {
+        button.addEventListener('click', function() {
 
-                var input = this.parentElement.querySelector('input[name="quantity"]');
+            var input = this.parentElement.querySelector('input[name="quantity"]');
 
-                var currentValue = parseInt(input.value);
+            var currentValue = parseInt(input.value);
 
-                input.value = currentValue + 1;
+            if (currentValue > 0) {
+
+                input.value = currentValue - 1;
 
                 calculateTotal.call(input);
 
-            });
+            }
+
+        });
+
+    });
+
+
+
+    plusButtons.forEach(function(button) {
+
+        button.addEventListener('click', function() {
+
+            var input = this.parentElement.querySelector('input[name="quantity"]');
+
+            var currentValue = parseInt(input.value);
+
+            input.value = currentValue + 1;
+
+            calculateTotal.call(input);
+
+        });
+
+    });
+
+
+
+    function calculateTotal() {
+
+        var totalPrice = 0;
+
+
+
+        document.querySelectorAll('tbody tr').forEach(function(row) {
+
+            var priceElement = row.querySelector('.price');
+
+            var quantityInput = row.querySelector('input[name="quantity"]');
+
+            var price = parseFloat(priceElement.textContent.replace('₹', ''));
+
+            var quantity = parseInt(quantityInput.value);
+
+            var total = price * quantity;
+
+            row.querySelector('.total').textContent = '₹' + total.toFixed(2);
+
+            totalPrice += total;
+
+
+
+            if (quantity === 0) {
+
+                row.remove();
+
+            }
 
         });
 
 
 
-        function calculateTotal() {
+        var totalElement = document.getElementById('total-price');
 
-            var totalPrice = 0;
+        totalElement.textContent = '₹' + totalPrice.toFixed(2);
 
-
-
-            document.querySelectorAll('tbody tr').forEach(function(row) {
-
-                var priceElement = row.querySelector('.price');
-
-                var quantityInput = row.querySelector('input[name="quantity"]');
-
-                var price = parseFloat(priceElement.textContent.replace('₹', ''));
-
-                var quantity = parseInt(quantityInput.value);
-
-                var total = price * quantity;
-
-                row.querySelector('.total').textContent = '₹' + total.toFixed(2);
-
-                totalPrice += total;
+    }
 
 
 
-                if (quantity === 0) {
+    window.addEventListener('load', calculateTotal);
 
-                    row.remove();
-
-                }
-
-            });
-
-
-
-            var totalElement = document.getElementById('total-price');
-
-            totalElement.textContent = '₹' + totalPrice.toFixed(2);
-
-        }
-
-
-
-        window.addEventListener('load', calculateTotal);
-
-    </script>
+</script>
 
 </body>
 
