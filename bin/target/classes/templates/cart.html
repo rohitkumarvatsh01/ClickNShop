@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClickNShop Cart</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+    		font-family: 'Roboto', sans-serif;
+    		background-color: #fafafa;
+		}
+		
+		.company-icon {
+    		width: 40px; /* Adjust the width as needed */
+    		height: auto; /* Maintain aspect ratio */
+    		margin-right: 10px; /* Add spacing between the icon and other links */
+		}
+
+		.container {
+    		width: 100%;
+    		padding: 20px;
+    		background-color: #fff;
+    		border-radius: 8px;
+    		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    		text-align: center;
+    		overflow-y: auto;
+		}
+
+		h1,h2 {
+    		color:  #007bff;
+    		text-transform: uppercase;
+    		letter-spacing: 1px;
+		}
+
+		p {
+    		color: #666;
+    		font-size: 18px;
+		}
+		table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        td {
+            background-color: #fff;
+            color: #666;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+		
+		.navbar {
+    		display: flex;
+    		justify-content: space-between;
+    		background-color: #007bff;
+    		padding: 10px 10px;
+    		color: white;
+		}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.navbar a:hover {
+    color: #ddd;
+}
+
+       
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to ClickNShop</h1>
+        <p>Revolutionizing your shopping experience!</p>
+        
+		<img th:src="@{images/ClickNShop-Icon.png}" alt="ClickNShop Icon" class="company-icon">
+
+	<div class="navbar">
+    	<div>
+        	<a href="#">Home</a>
+        	<a href="/product/user-login">Products</a>
+        	<a href="#">About Us</a>
+        	<a href="#">Contact Us</a>
+    	</div>
+    	<div>
+        	<a href="#"><i class="fas fa-user"></i> Account</a>
+        	<a href="/product/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+        	<a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    	</div>
+  	</div>
+  
+		<br>
+		<br> 
+		
+        <h1>Shopping Cart</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over cart items and display them -->
+            <tr th:each="item : ${session.cart}">
+                <td th:text="${item.productId}"></td>
+                <td th:text="${item.productName}"></td>
+                <td th:text="${item.productPrice}"></td>
+                <td><img th:src="${item.productImageUrl}" width="100"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/product/user-login">Continue Shopping</a>
+    </div>
+  <script>
+    function displayCartItems() {
+    let cartTableBody = document.querySelector('#orderedProductsTblBody');
+    cartItems.forEach(item => {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.price}</td>
+            <td>1</td>
+            <td>${item.price}</td>
+        `;
+        cartTableBody.appendChild(tr);
+    });
+}
+</script>  
+</body>
+</html>

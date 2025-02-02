@@ -19,14 +19,14 @@ public class ProductService {
         productRepository.save(product);
         return "New Product is Created";
     }
-
+    
     public List<Product> getAllProduct() {
         return productRepository.findAll();
     }
 
     public Product getProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Product not found"));
+                                .orElseThrow(() -> new NoSuchElementException("Product not found"));
     }
 
     public void updateProduct(Long id, Product updatedProduct) {
